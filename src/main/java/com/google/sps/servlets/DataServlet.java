@@ -33,5 +33,26 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
       String initiativeTitle = request.getParameter("initiative-title");
-  }
+      String initiativeLocation = request.getParameter("initiative-location");
+      String initiativeStartDate = request.getParameter("initiative-start-date");
+      String initiativeEndDate = request.getParameter("initiative-end-date");
+      String initiativeContext = request.getParameter("initiative-context");
+      String initiativeCause = request.getParameter("initiative-cause");
+      String initiativeTargetAudience = request.getParameter("initiative-target-audience");
+      String initiativeInstructions = request.getParameter("initiative-instructions");
+      String initiativeImageUrl = request.getParameter("initiative-image");
+      Entity initiativeEntity = new Entity("Initiative");
+      initiativeEntity.setProperty("title", initiativeTitle);
+      initiativeEntity.setProperty("location", initiativeLocation);
+      initiativeEntity.setProperty("startDate", initiativeStartDate);
+      initiativeEntity.setProperty("endDate", initiativeEndDate);
+      initiativeEntity.setProperty("imageUrl", initiativeImageUrl);
+      initiativeEntity.setProperty("context", initiativeContext);
+      initiativeEntity.setProperty("cause", initiativeCause);
+      initiativeEntity.setProperty("targetAudience", initiativeTargetAudience);
+      initiativeEntity.setProperty("instructions", initiativeInstructions);
+      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+      datastore.put(initiativeEntity);
+      response.sendRedirect("/createYourOwn.html");
+    }
 }
