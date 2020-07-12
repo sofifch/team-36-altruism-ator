@@ -1,0 +1,9 @@
+body {
+  background-image: url(images/hands.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #FFB6C1;
+}
+
