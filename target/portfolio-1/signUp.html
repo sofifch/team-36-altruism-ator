@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <ul>
+            <li class="nav-item"><a href="index.html">Home</a></li>
+            <li class="nav-item"><a href="profile.html">Profile</a></li>
+            <li class="nav-item"><a href="createYourOwn.html">Create your own</a></li>
+            <li class="nav-item"><a href="chat.html">Chat</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="signUpForm">
+        <form action="/newUser" method="POST">
+          <label for="name">Name:</label>
+          <input type="text" name="name" required><br><br>
+          <label for="username">Username:</label>
+          <input type="text" name="username" required><br><br>
+          <label for="password">Password:</label>
+          <input type="password" name="password" required><br><br>
+          <label for="email">Email:</label>
+          <input type="email" name="email" required><br><br>
+          <label for="contactNum">Contact Number:</label>
+          <input type="tel" name="contactNum"><br><br>
+          <label for="organization">Organization:</label>
+          <input type="text" name="organization"><br><br>
+          <input type="submit">
+        </form>
+        <a href="login.html">
+          <button>Login</button>
+        </a>
+      </div>
+    </header>
+  </body>
+</html>
