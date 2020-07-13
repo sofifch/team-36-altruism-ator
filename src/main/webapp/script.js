@@ -15,14 +15,33 @@
 /**
  * Adds a random greeting to the page.
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+function getMessage() {
+    getBlobstoreUrl();
+    fetch('/data').then(response => response.json()).then((fullList) => {
+        const titlesListElement = document.getElementById('titles-container');
+        titlesListElement.innerHTML = '';
+        var titlesList = fullList[0];
+        for (i = 0; i < titlesList.length; i++) {
+            titlesListElement.appendChild(createListElement(titlesList[i]));
+        }
+    });
+}
 
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+function getBlobstoreUrl() {
+    fetch('/my-blobstore-url').then((response) => {
+        return response.text();
+    })
+    .then((imageUploadUrl) => {
+        const myForm = document.getElementById('newInitiativeForm');
+        myForm.action = imageUploadUrl;
+        myForm.classList.remove('hidden');
+      });
+}
+console.log("This is the blobstore url"+getBlobstoreUrl() );
+
+function createListElement(text) {
+  const element = document.createElement('li');
+  element.innerText = text;
+  return element;
 }
