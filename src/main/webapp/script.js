@@ -22,8 +22,12 @@ function getMessage() {
         const titlesListElement = document.getElementById('titles-container');
         titlesListElement.innerHTML = '';
         var titlesList = fullList[0];
+        var contextsList = fullList[4];
+        var startDatesList = fullList[2];
+        var urlsList = fullList[8];
         for (i = 0; i < titlesList.length; i++) {
-            titlesListElement.appendChild(createListElement(titlesList[i]));
+            titlesListElement.appendChild(createDivElement(titlesList[i], startDatesList[i],
+             contextsList[i], urlsList[i]));
         }
     });
 }
@@ -40,8 +44,40 @@ function getBlobstoreUrl() {
 }
 console.log("This is the blobstore url"+getBlobstoreUrl() );
 
-function createListElement(text) {
-  const element = document.createElement('li');
-  element.innerText = text;
-  return element;
+function createDivElement(initiativeTitle, initiativeStart, initiativeContext, initiativeImage) {
+  const currentCard = document.createElement('div');
+  const currStartDate = document.createElement('p');
+  const currTitle = document.createElement('p');
+  const currContext = document.createElement('p');
+  const currImage = document.createElement('img');
+  currImage.src = initiativeImage;
+  currImage.style.width = "85px";
+  currImage.style.height = "80px";
+  currImage.style.float = "left";
+  currImage.style.marginTop = "25px";
+  currImage.style.marginLeft = "15px";
+  currImage.style.marginRight = "13px";
+  currTitle.innerText = initiativeTitle;
+  currTitle.style.fontFamily = "'Roboto', sans-serif";
+  currTitle.style.fontWeight = "bolder";
+  currTitle.style.textTransform = "uppercase";
+  currTitle.style.fontSize = "90%";
+  currStartDate.innerText = initiativeStart;
+  currStartDate.style.fontFamily = "'Roboto', sans-serif";
+  currStartDate.style.fontSize = "80%";
+  currContext.innerText = initiativeContext;
+  currContext.style.fontFamily = "'Roboto', sans-serif";
+  currContext.style.fontSize = "80%";
+  currContext.style.marginRight = "12px";
+  currentCard.style.backgroundColor = "#E5E5E5";
+  currentCard.style.width = "300px";
+  currentCard.style.height = "130px";
+  currentCard.style.borderRadius = "11px";
+  currentCard.style.padding = "12px";
+  currentCard.style.marginBottom = "20px";
+  currentCard.appendChild(currImage);
+  currentCard.appendChild(currTitle);
+  currentCard.appendChild(currStartDate);
+  currentCard.appendChild(currContext);
+  return currentCard;
 }

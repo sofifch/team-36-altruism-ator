@@ -89,3 +89,12 @@ nav a {
     font-family: 'Roboto', sans-serif;
     font-size: 130%;
 }
+
+#titles-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin-top: 50px;
+    margin-left: 170px;
+    margin-right: 170px;
+}
