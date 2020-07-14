@@ -1,4 +1,5 @@
 body {
+  margin: 0;
   background-image: url(images/hands.png);
   background-position: center center;
   background-repeat: no-repeat;
@@ -7,3 +8,97 @@ body {
   background-color: #FFB6C1;
 }
 
+header {
+  background-color: #F9DBA3;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+form {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  margin-top: 25px;
+  margin-left: 20px;
+  padding: 15px;
+}
+
+.loginForm {
+  position: absolute;
+  width: 555px;
+  height: 351px;
+  left: 73px;
+  top: 66px;
+}
+
+.signupForm {
+  position: absolute;
+  width: 555px;
+  height: 600px;
+  left: 73px;
+  top: 66px;
+}
+
+label {
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: justify;
+}
+
+input[type=submit] {
+  background-color: #F6356F;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 25px;
+  border-width: 0px;
+  align-content: center;
+  padding: 13px;
+} 
+
+button {
+  background-color: #F6356F;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 25px;
+  border-width: 0px;
+  align-content: center;
+  padding: 13px;
+} 
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 90px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-size: 50px;
+}
+
+li.nav-item:hover {
+  border: 2px solid #F6356F;
+  background-color: #FF9DB5;
+  padding: 10px;
+  border-radius: 25px;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  background-color: #FF9DB5;
+  border-radius: 25px;
+  padding: 10px;
+  padding-left: 35px;
+  padding-right: 35px;
+  font-family: 'Roboto', sans-serif;
+}
