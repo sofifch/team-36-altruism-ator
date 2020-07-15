@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="formStyle.css">
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <ul>
+            <li class="nav-item"><a href="index.html">Home</a></li>
+            <li class="nav-item"><a href="profile.html">Profile</a></li>
+            <li class="nav-item"><a href="createYourOwn.html">Create your own</a></li>
+            <li class="nav-item"><a href="chat.html">Chat</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="loginForm">
+      <form action="/login" method="POST">
+        <div class="formTextBox">
+          <label for="username">Username:</label></br>
+          <input type="text" name="username" required><br><br>
+          <label for="password">Password:</label><br>
+          <input type="password" name="password" required><br><br>
+        </div>
+        <input type="submit">
+      </form>
+      <a href="signUp.html">
+        <button>Sign Up</button>
+      </a>
+    </div>
+  </body>
+</html>
+
