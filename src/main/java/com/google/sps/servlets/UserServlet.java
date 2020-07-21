@@ -48,11 +48,9 @@ public class UserServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery result = datastore.prepare(query);
 
-    System.out.println("Result: "+result);
-
     if (result.countEntities() == 1) {
       Cookie cookie = new Cookie("user", username);
-      Cookie cookieId = new Cookie("id", result.asSingleEntity().getKey() + "");
+      Cookie cookieId = new Cookie("id", result.asSingleEntity().getKey().getId() + "");
       response.addCookie(cookie);
       response.addCookie(cookieId);
       response.sendRedirect("/profile.html");
@@ -72,8 +70,10 @@ public class UserServlet extends HttpServlet {
     for (Cookie c:cookies) {
       if (c.getName().equals("user"))
         username = c.getValue();
-      if (c.getName().equals("id"))
+      if (c.getName().equals("id")) {
+        System.out.println("ID ----> "+ c.getValue());
         id = Long.parseLong(c.getValue());
+      }
     }
 
     Query query = new Query("user").setFilter(
