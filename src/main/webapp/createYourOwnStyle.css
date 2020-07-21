@@ -108,3 +108,8 @@ input[type=submit] {
     color: #847C7C;
     font-family: 'Roboto', sans-serif;
 }
+
+#mandatory {
+    width: 10px;
+    height: 10px;
+}
