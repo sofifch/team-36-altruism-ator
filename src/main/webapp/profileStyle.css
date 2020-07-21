@@ -44,3 +44,14 @@ nav a {
     padding-right: 35px;
     font-family: 'Roboto', sans-serif;
 }
+
+#profile-side {
+    margin-top: 60px;
+    margin-left: 80px;
+}
+
+#current-user-name {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size:125%;
+}
