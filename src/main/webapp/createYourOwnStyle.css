@@ -6,6 +6,13 @@ header {
     background-color: #F9DBA3;
 }
 
+h1 {
+    font-family: 'Karla', sans-serif;
+    text-align: center;
+    font-size: 170%;
+    margin-top: 30px;
+}
+
 .container {
     width: 80%;
     margin: 0 auto;
@@ -43,4 +50,66 @@ nav a {
     padding-left: 35px;
     padding-right: 35px;
     font-family: 'Roboto', sans-serif;
+}
+
+#new-initiative {
+    background-color: #F6E1E6;
+    border-radius: 25px;
+    width: 900px;
+    margin: 0 auto;
+}
+
+#newInitiativeForm {
+    text-align: left;
+    padding-left: 140px;
+    padding-right: 110px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.initiative-input {
+    font-family: 'Roboto', sans-serif;
+    color: black;
+}
+
+input[type=text] {
+    border: 3px solid #FFFDFD;
+    background-color: #F6E1E6;
+    border-radius: 12px;
+    height: 27px;
+    color: #847C7C;
+    font-family: 'Roboto', sans-serif;
+}
+
+input[type=file] {
+    font-family: 'Roboto', sans-serif;
+}
+
+input[type=submit] {
+    background-color: #F6356F;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 25px;
+    border-width: 0px;
+    align-content: center;
+    padding: 13px;
+}
+
+#submitButtonHolder {
+    text-align: center;
+}
+
+#big-text-space {
+    border: 3px solid #FFFDFD;
+    background-color: #F6E1E6;
+    border-radius: 12px;
+    height: 60px;
+    width: 400px;
+    color: #847C7C;
+    font-family: 'Roboto', sans-serif;
+}
+
+#mandatory {
+    width: 10px;
+    height: 10px;
 }

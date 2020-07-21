@@ -3,13 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <title>altruism-ator</title>
-    <link rel="stylesheet" href="index-style.css">
     <link rel="stylesheet" href="indexStyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getMessage()">
       <header>
         <div class="container">
             <nav>
@@ -29,5 +28,33 @@
       <input class="search-bar" id="search-item" type="text" placeholder="Search..">
       <button class="category-button" id="dropdown">Category  
           <img src="images/dropdown-icon.png" style="width:20px;height:10px;margin-left:10px;"></button>
+      <div id="titles-container"></div>
+      <div id="initiative-overlay">
+          <div id="left-side-overlay">
+                <a href="index.html" class="closebtn" onclick="close()">&times;</a>
+                <div id="initiative-overlay-image"></div>
+                <div id="initiative-overlay-title"></div>
+                <hr style="height:4px;background-color:#F8944C;color:#F8944C;border-width:0;width:200px;margin-left:82px">
+                <div id="initiative-overlay-start-date"></div>
+                <div id="initiative-overlay-location"></div>
+                <div id="initiative-host"><p>Host:</p></div>
+                <div id="interest-button">Volunteer</div>
+          </div>
+          <div id="right-side-overlay">
+                <div id="subtitles">Context</div>
+                <hr style="height:4px;background-color:#F8944C;color:#F8944C;border-width:0;width:400px;margin-left:30px">
+                <div id="initiative-overlay-context"></div>
+                <div id="subtitles">Cause</div>
+                <hr style="height:4px;background-color:#F8944C;color:#F8944C;border-width:0;width:400px;margin-left:30px">
+                <div id="initiative-overlay-cause"></div>
+                <div id="subtitles">Target Audience</div>
+                <hr style="height:4px;background-color:#F8944C;color:#F8944C;border-width:0;width:400px;margin-left:30px">
+                <div id="initiative-overlay-audience"></div>
+                <div id="subtitles">Instructions</div>
+                <hr style="height:4px;background-color:#F8944C;color:#F8944C;border-width:0;width:400px;margin-left:30px">
+                <div id="initiative-overlay-instructions"></div>
+          </div>
+      </div>
+      </div>
   </body>
 </html>
