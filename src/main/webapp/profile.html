@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
     <script src="profileScript.js"></script>
   </head>
-  <body>
+  <body onload="updateVolunteeringStatus()">
       <header>
         <div class="container">
             <nav>
@@ -27,7 +27,7 @@
           <div id="volunteering-status-btn">Neutral</div>
           <div id="status-switch">
               <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" id="myCheck">
                   <span class="slider round"></span>
               </label>
           </div>
