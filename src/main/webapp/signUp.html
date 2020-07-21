@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="formStyle.css">
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <ul>
+            <li class="nav-item"><a href="index.html">Home</a></li>
+            <li class="nav-item"><a href="profile.html">Profile</a></li>
+            <li class="nav-item"><a href="createYourOwn.html">Create your own</a></li>
+            <li class="nav-item"><a href="chat.html">Chat</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+      <div class="signupForm">
+        <form action="/newUser" method="POST">
+          <div class="formTextBox">
+            <label for="name">Name:</label><br>
+            <input type="text" name="name" required><br><br>
+            <label for="username">Username:</label><br>
+            <input type="text" name="username" required><br><br>
+            <label for="password">Password:</label><br>
+            <input type="password" name="password" required><br><br>
+            <label for="email">Email:</label><br>
+            <input type="email" name="email" required><br><br>
+            <label for="contactNum">Contact Number:</label><br>
+            <input type="tel" name="contactNum"><br><br>
+            <label for="organization">Organization:</label><br>
+            <input type="text" name="organization"><br><br>
+          </div>
+          <input type="submit">
+        </form>
+      <a href="login.html">
+        <button>Login</button>
+      </a>
+    </div>
+  </body>
+</html>
+
