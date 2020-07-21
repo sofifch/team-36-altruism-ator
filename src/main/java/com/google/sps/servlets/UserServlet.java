@@ -30,7 +30,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*; 
 
 
 @WebServlet("/user")
@@ -54,9 +53,6 @@ public class UserServlet extends HttpServlet {
     if (result.countEntities() == 1) {
       Cookie cookie = new Cookie("user", username);
       Cookie cookieId = new Cookie("id", result.asSingleEntity().getKey() + "");
-
-      System.out.println("username" + username);
-      System.out.println("id" + result.asSingleEntity().getKey());
       response.addCookie(cookie);
       response.addCookie(cookieId);
       response.sendRedirect("/profile.html");

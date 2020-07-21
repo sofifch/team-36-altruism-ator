@@ -25,7 +25,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*; 
 
 
 @WebServlet("/newUser")
@@ -53,7 +52,6 @@ public class NewUserServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(userEntity);
 
-    System.out.println("successfully added NEW USER into database");    
     response.sendRedirect("/login.html");
   }
 
