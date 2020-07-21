@@ -112,17 +112,104 @@ nav a {
     transition: 0.5s;
 }
 
-#initiative-overlay-title {
-    position: relative;
-    top: 25%;
-    width: 100%;
-    text-align: center;
+#initiative-overlay-image {
     margin-top: 30px;
+    margin-left: 30px;
 }
 
-#initiative-overlay .closebtn {
+#initiative-overlay-title {
+   font-family: 'Roboto', sans-serif;
+   margin-top: 330px;
+   margin-left: 120px;
+   font-size: 130%;
+}
+
+#initiative-overlay-start-date {
+    font-family: 'Roboto', sans-serif;
+    margin-left: 138px;
+    font-size: 110%;
+    margin-top: 25px;
+}
+
+#initiative-overlay-location {
+    font-family: 'Roboto', sans-serif;
+    margin-left: 112px;
+    font-size: 90%;
+}
+
+#initiative-overlay-context {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    text-align: justify;
+}
+
+#initiative-overlay-cause {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    text-align: justify;
+    margin-top: 17px;
+    margin-bottom: 21px;
+}
+
+#initiative-overlay-audience {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    text-align: justify;
+    margin-top: 17px;
+    margin-bottom: 21px;
+}
+
+#initiative-overlay-instructions {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    text-align: justify;
+    margin-top: 17px;
+    margin-bottom: 21px;
+}
+
+#initiative-host {
+    font-family: 'Roboto', sans-serif;
+    margin-left: 82px;
+    font-size: 90%;
+}
+
+#interest-button {
+    background-color: #F6356F;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 25px;
+    border-width: 0px;
+    padding: 11px;
+    width: 80px;
+    margin-left: 125px;
+    text-align: center;
+}
+
+.closebtn {
     position: absolute;
     top: 20px;
     right: 45px;
-    font-size: 60px;
+    font-size: 50px;
+    color: black;
+    text-decoration: none;
+}
+
+.closebtn:hover {
+    color: #F6356F;
+}
+
+#left-side-overlay {
+    float: left;
+    margin-right: 80px;
+}
+
+#right-side-overlay {
+    margin-top: 80px;
+    margin-right: 80px;
+}
+
+#subtitles {
+    font-family: 'Karla', sans-serif;
+    font-size: 170%;
+    margin-left: 100px;
 }
