@@ -17,6 +17,8 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
@@ -76,8 +78,10 @@ public class UserServlet extends HttpServlet {
       }
     }
 
+    Key key = KeyFactory.createKey("user", id);
+
     Query query = new Query("user").setFilter(
-        CompositeFilterOperator.and(FilterOperator.EQUAL.of("username", username), FilterOperator.EQUAL.of(Entity.KEY_RESERVED_PROPERTY, id)));
+        CompositeFilterOperator.and(FilterOperator.EQUAL.of("username", username), FilterOperator.EQUAL.of(Entity.KEY_RESERVED_PROPERTY, key)));
     
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery result = datastore.prepare(query);
