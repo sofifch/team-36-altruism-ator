@@ -50,10 +50,18 @@ nav a {
     margin-left: 80px;
 }
 
-#current-user-name {
+#current-name {
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    font-size:110%;
+    margin-bottom: 0px;
+}
+
+#current-username {
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size:125%;
+    margin-left: 65px;
 }
 
 #volunteering-status-btn {
@@ -65,7 +73,7 @@ nav a {
     padding: 5px;
     width: 80px;
     margin-top: 20px;
-    margin-left: 50px;
+    margin-left: 45px;
     text-align: center;
 }
 
@@ -74,7 +82,7 @@ nav a {
     display: inline-block;
     width: 50px;
     height: 24px;
-    margin-left: 75px;
+    margin-left: 67px;
     margin-top: 10px;
 }
 

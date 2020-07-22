@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
     <script src="profileScript.js"></script>
   </head>
-  <body onload="updateVolunteeringStatus()">
+  <body onload="getCurrentUserInfo()">
       <header>
         <div class="container">
             <nav>
@@ -22,8 +22,9 @@
         </div>
       </header>
       <div id="profile-side">
-          <img src="images/avatar.png" style="widht:137px;height:145px;margin-left:35px;margin-bottom:20px">
-          <div id="current-user-name">Sofia Fernandez Chacin</div>
+          <img src="images/avatar.png" style="widht:137px;height:145px;margin-left:30px;margin-bottom:20px">
+          <div id="current-username"></div>
+          <div id="current-name"></div>
           <div id="volunteering-status-btn">Neutral</div>
           <div id="status-switch">
               <label class="switch">
