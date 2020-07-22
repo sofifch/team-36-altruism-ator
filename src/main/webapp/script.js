@@ -194,3 +194,12 @@ function open() {
 function close() {
     document.getElementById('initiative-overlay').style.width = "0%";
 }
+
+var orderBy = "";
+var keyword = "";
+
+function sort() {
+  orderBy = document.getElementById('sortDropdown').value;
+  console.log("sort by " + orderBy);
+  getMessage();
+}
