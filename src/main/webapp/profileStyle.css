@@ -48,6 +48,8 @@ nav a {
 #profile-side {
     margin-top: 60px;
     margin-left: 80px;
+    margin-right: 85px;
+    float: left;
 }
 
 #current-name {
@@ -151,4 +153,63 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+#user-info-side {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 200px;
+}
+
+#track-button {
+    background-color: #C1DE6D;
+    color: black;
+    font-family: 'Karla', sans-serif;
+    font-size: 110%;
+    font-weight: bold;
+    border-radius: 15px;
+    border: 0px;
+    padding: 22px 20px;
+    width: 120px;
+    margin: auto;
+    text-align: center;
+}
+
+#hosted-count {
+    background-color: #F9DBA3;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 80px;
+    border: 0px;
+    width: 18px;
+    padding: 9px;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 62px;
+}
+
+#participated-count {
+    background-color: #F9DBA3;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 80px;
+    border: 0px;
+    width: 18px;
+    padding: 9px;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 62px;
+}
+
+#interested-count {
+    background-color: #F9DBA3;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 80px;
+    border: 0px;
+    width: 18px;
+    padding: 9px;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 62px;
 }
