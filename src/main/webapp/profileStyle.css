@@ -64,7 +64,7 @@ nav a {
     margin-left: 65px;
 }
 
-#volunteering-status-btn {
+#neutral-volunteering-status-btn {
     background-color: white;
     color: black;
     font-family: 'Roboto', sans-serif;
@@ -75,6 +75,21 @@ nav a {
     margin-top: 20px;
     margin-left: 45px;
     text-align: center;
+    display: none;
+}
+
+#interested-volunteering-status-btn {
+    background-color: white;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 15px;
+    border: 4px solid #45CA52;
+    padding: 5px;
+    width: 80px;
+    margin-top: 20px;
+    margin-left: 45px;
+    text-align: center;
+    display: none;
 }
 
 .switch {

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="profileStyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="profileScript.js"></script>
   </head>
   <body onload="getCurrentUserInfo()">
@@ -25,7 +26,8 @@
           <img src="images/avatar.png" style="widht:137px;height:145px;margin-left:30px;margin-bottom:20px">
           <div id="current-username"></div>
           <div id="current-name"></div>
-          <div id="volunteering-status-btn">Neutral</div>
+          <div id="neutral-volunteering-status-btn">Neutral</div>
+          <div id="interested-volunteering-status-btn">Interested</div>
           <div id="status-switch">
               <label class="switch">
                   <input type="checkbox" id="myCheck">
