@@ -1,19 +1,21 @@
 function getCurrentUserInfo() {
-    fetch('/user').then(response => response.json()).then((userInfo) => {
-        if ((Object.keys(userInfo).length) == 0) {
-            window.open("login.html");
+        if (getCookie("user") == "") {
+            console.log("no cookie");
+            window.open("login.html", "_self");
         } else {
-            const currentName = document.getElementById('current-name');
-            const theName = document.createElement('p');
-            theName.innerText = userInfo.name;
-            currentName.appendChild(theName);
-            const currentUsername = document.getElementById('current-username');
-            const theUsername = document.createElement('p');
-            theUsername.innerText = userInfo.username;
-            currentUsername.appendChild(theUsername);
+            fetch('/user').then(response => response.json()).then((userInfo) => {
+                const currentName = document.getElementById('current-name');
+                const theName = document.createElement('p');
+                theName.innerText = userInfo.name;
+                currentName.appendChild(theName);
+                const currentUsername = document.getElementById('current-username');
+                const theUsername = document.createElement('p');
+                theUsername.innerText = userInfo.username;
+                currentUsername.appendChild(theUsername);
+            });
         }
-    });
     loadPrevStatus();
+    checkStatus();
 }
 
 function loadPrevStatus() {
@@ -54,3 +56,47 @@ $(document).ready(function(){
             }
         });
     });
+
+function checkStatus() {
+    if (getCookie("user") == "") {
+        const itemText = document.getElementById('text-part');
+        itemText.textContent = "Login";
+    } else {
+        const itemText = document.getElementById('text-part');
+        itemText.textContent = "Logout";
+    }
+    logoutFeature();
+}
+
+function logoutFeature() {
+    var logoutButton = document.getElementById('logout-login');
+    logoutButton.addEventListener("click", logout);
+}
+
+function logout() {
+    const itemText = document.getElementById('text-part');
+    if (((itemText.textContent) == "Logout") && (getCookie("user") != "")) {
+        document.cookie = 'user'+'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'id'+'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        itemText.textContent = "Login";
+        window.open("login.html", "_self");
+    } else if (((itemText.textContent) == "Login") && (getCookie("user") == "")) {
+        window.open("login.html", "_self");
+    }
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+} 
