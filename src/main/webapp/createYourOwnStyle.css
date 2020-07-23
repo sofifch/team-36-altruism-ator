@@ -95,10 +95,6 @@ input[type=submit] {
     padding: 13px;
 }
 
-#submitButtonHolder {
-    text-align: center;
-}
-
 #big-text-space {
     border: 3px solid #FFFDFD;
     background-color: #F6E1E6;
@@ -112,4 +108,37 @@ input[type=submit] {
 #mandatory {
     width: 10px;
     height: 10px;
+}
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
 }

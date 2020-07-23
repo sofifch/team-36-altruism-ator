@@ -240,3 +240,16 @@ function getCookie(cname) {
     }
     return "";
 }
+
+function userNeededForSubmission() {
+    checkStatus();
+    console.log("running");
+    if (getCookie("user") == "") {
+        document.getElementById('submit-new-initiative').addEventListener("click",
+        function(event) {
+            event.preventDefault();
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+        });
+    }
+}
