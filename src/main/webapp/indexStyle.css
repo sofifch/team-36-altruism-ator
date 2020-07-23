@@ -63,7 +63,20 @@ nav a {
 .search-bar {
     text-align: center;
     background-color: #E5E5E5;
-    margin-left: 400px;
+    margin: auto;
+    width: 300px;
+    margin-bottom: 20px;
+    border-radius: 11px;
+    border: none;
+    padding: 18px;
+    padding-left: 170px;
+    padding-right: 170px;
+}
+
+.sort {
+    text-align: center;
+    margin: auto;
+    margin-bottom: 20px;
     border-radius: 11px;
     border: none;
     padding: 18px;
