@@ -17,9 +17,17 @@
  */
 var cardCount = 0;
 
+var orderBy = ""
+var startDate = "";
+var endDate = "";
+
 function getMessage() {
     getBlobstoreUrl();
-    fetch('/data').then(response => response.json()).then((fullList) => {
+    const params = new URLSearchParams();
+    params.append('sortBy', orderBy);
+    params.append('startDate', startDate);
+    params.append('endDate', endDate);
+    fetch('/data', {method:'GET', headers:params}).then(response => response.json()).then((fullList) => {
         const titlesListElement = document.getElementById('titles-container');
         titlesListElement.innerHTML = '';
         var titlesList = fullList[0];
@@ -195,11 +203,16 @@ function close() {
     document.getElementById('initiative-overlay').style.width = "0%";
 }
 
-var orderBy = "";
-var keyword = "";
-
 function sort() {
   orderBy = document.getElementById('sortDropdown').value;
   console.log("sort by " + orderBy);
+  getMessage();
+}
+
+function getDate() {
+  startDate = document.getElementById("start-date").value;
+  endDate = document.getElementById("end-date").value;
+  console.log("Search start date : " + startDate);
+  console.log("Search end date " + endDate);
   getMessage();
 }
