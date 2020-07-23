@@ -38,6 +38,7 @@ function getMessage() {
         }
         cardEnlargement(cardCount);
     });
+    checkStatus();
 }
 
 function getBlobstoreUrl() {
@@ -194,3 +195,32 @@ function open() {
 function close() {
     document.getElementById('initiative-overlay').style.width = "0%";
 }
+
+function logoutFeature() {
+        var logoutButton = document.getElementById('logout-login');
+        logoutButton.addEventListener("click", logout);
+    }
+
+    function checkStatus() {
+        fetch('/user').then(response => response.json()).then((userInfo) => {
+            if ((Object.keys(userInfo).length) == 0) {
+                const itemText = document.getElementById('text-part');
+                itemText.textContent = "Login";
+            } else {
+                const itemText = document.getElementById('text-part');
+                itemText.textContent = "Logout";
+            }
+        });
+    }
+
+    function logout() {
+        fetch('/user').then(response => response.json()).then((userInfo) => {
+            const itemText = document.getElementById('text-part');
+            if (((itemText.textContent) == "Logout") && ((Object.keys(userInfo).length) != 0)) {
+                itemText.textContent = "Login";
+                window.open("login.html", "_self");
+            } else if (((itemText.textContent) == "Login") && ((Object.keys(userInfo).length) == 0)) {
+                window.open("login.html", "_self");
+            }
+        });
+    }
