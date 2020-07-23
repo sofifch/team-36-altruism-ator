@@ -25,8 +25,11 @@
       <div id="location-placeholder">
           <p id="location-text"><img src="images/pin.png" style="width:30px;height:25px;margin-right:10px">Atlanta, GA</p>
       </div>
-      <input class="search-bar" id="search-item" type="text" placeholder="Search..">
-      <button onclick="search()">Search</button>
+      <label>Select start date:</label>
+      <input class="search-bar" id="start-date" type="date">
+      <label>Select end date:</label>
+      <input class="search-bar" id="end-date" type="date">
+      <button onclick="getDate()">Filter</button>
       <select class="sort" id="sortDropdown" onchange="sort()">Sort By  
           <img src="images/dropdown-icon.png" style="width:20px;height:10px;margin-left:10px;">
           <option value="">Default</option>
