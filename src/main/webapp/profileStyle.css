@@ -19,7 +19,7 @@ nav ul {
 
 nav li {
     display: inline-block;
-    margin-left: 90px;
+    margin-left: 60px;
     margin-top: 20px;
     margin-bottom: 20px;
     background-size: 50px;
@@ -43,4 +43,173 @@ nav a {
     padding-left: 35px;
     padding-right: 35px;
     font-family: 'Roboto', sans-serif;
+}
+
+#profile-side {
+    margin-top: 60px;
+    margin-left: 80px;
+    margin-right: 85px;
+    float: left;
+}
+
+#current-name {
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    font-size:110%;
+    margin-bottom: 0px;
+}
+
+#current-username {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size:125%;
+    margin-left: 65px;
+}
+
+#neutral-volunteering-status-btn {
+    background-color: white;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 15px;
+    border: 4px solid #73DAE0;
+    padding: 5px;
+    width: 80px;
+    margin-top: 20px;
+    margin-left: 45px;
+    text-align: center;
+    display: none;
+}
+
+#interested-volunteering-status-btn {
+    background-color: white;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 15px;
+    border: 4px solid #45CA52;
+    padding: 5px;
+    width: 80px;
+    margin-top: 20px;
+    margin-left: 45px;
+    text-align: center;
+    display: none;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin-left: 67px;
+    margin-top: 10px;
+}
+
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 17px;
+    width: 17px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #FFBACB;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #FFBACB;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+#user-info-side {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 200px;
+}
+
+#track-button {
+    background-color: #C1DE6D;
+    color: black;
+    font-family: 'Karla', sans-serif;
+    font-size: 110%;
+    font-weight: bold;
+    border-radius: 15px;
+    border: 0px;
+    padding: 22px 20px;
+    width: 120px;
+    margin: auto;
+    text-align: center;
+}
+
+#hosted-count {
+    background-color: #F9DBA3;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 80px;
+    border: 0px;
+    width: 18px;
+    padding: 9px;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 62px;
+}
+
+#participated-count {
+    background-color: #F9DBA3;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 80px;
+    border: 0px;
+    width: 18px;
+    padding: 9px;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 62px;
+}
+
+#interested-count {
+    background-color: #F9DBA3;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 80px;
+    border: 0px;
+    width: 18px;
+    padding: 9px;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 62px;
 }
