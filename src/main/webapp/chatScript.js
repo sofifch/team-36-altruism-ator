@@ -15,16 +15,16 @@
 function loadMessage() {
   checkStatus();
   if (getCookie("user") == "") {
-    document.getElementById("inboxStatus").innerHTML = "Please login to view messages.";"
+    document.getElementById("inboxStatus").innerHTML = "Please login to view messages.";
   } else {
     getMessage();
   }
 }
 
-async function getMesage() {
+async function getMessage() {
     const response = await fetch('/message');
     const messages = await response.json();
-    const table = document.getElementById("viewMessage");
+    const table = document.getElementById("viewMessages");
     messages.forEach((message) => {
       var row = table.insertRow(1);
       var cell1 = row.insertCell(0);
@@ -33,8 +33,7 @@ async function getMesage() {
       cell1.innerHTML = message.timeStamp;
       cell2.innerHTML = message.sender;
       cell3.innerHTML = message.message;
-    })
-
+    });
 }
 
 function checkStatus() {
@@ -57,6 +56,7 @@ function logout() {
     const itemText = document.getElementById('text-part');
     if (((itemText.textContent) == "Logout") && (getCookie("user") != "")) {
         document.cookie = 'user'+'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'user2'+'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         document.cookie = 'id'+'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         itemText.textContent = "Login";
         window.open("login.html", "_self");
