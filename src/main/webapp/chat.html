@@ -22,19 +22,21 @@
             </nav>
         </div>
       </header>
+      <div class="content">
       <h2 id="inboxStatus">Inbox</h2>
-      <table id="viewMessages">
+      <table id="viewMessages" style="overflow-x:auto;">
         <tr>
-        <td>Time</td>
-        <td>Sender</td>
-        <td>Message</td>
+          <td><strong>Time:</strong></td>
+          <td><strong>Sender:</strong></td>
+          <td><strong>Message:</strong></td>
         </tr>
       </table>
-      <form id="newMesage">
+      <form id="newMesage" method="POST", action="/message">
         <label>New Message:</label><br>
-        <input name="message" type="text"><br>
+        <textarea name="message"></textarea><br>
         <input type="submit" name="submit">
       </form>
+      </div>
   </body>
 </html>
 </html>
