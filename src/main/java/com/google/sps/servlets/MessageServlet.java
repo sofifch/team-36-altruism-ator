@@ -31,6 +31,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -65,6 +67,7 @@ public class MessageServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(messageEntity);
 
+    System.out.println("POSTED new message, before redirection");
     response.sendRedirect("/chat.html");
   }
 
@@ -76,11 +79,14 @@ public class MessageServlet extends HttpServlet {
     Cookie cookies[] = request.getCookies();
 
     String user = "";
+    String user2 = "";
     Cookie cookieUser2 = null;
 
     for (Cookie c:cookies) {
       if (c.getName().equals("user"))
         user = c.getValue();
+      if (c.getName().equals("user2"))
+        user2 = c.getValue();
     }
 
     Query query = new Query("message");
@@ -88,6 +94,7 @@ public class MessageServlet extends HttpServlet {
     PreparedQuery result = datastore.prepare(query);
 
     List<Message> messageList = new ArrayList<>();
+    SimpleDateFormat formatter = null;
 
     // if no initial messages in database, create some messages
     if (result.countEntities() == 0) {
@@ -98,32 +105,44 @@ public class MessageServlet extends HttpServlet {
         "Great. What are some info that I should aware of?", 
         "Could I bring my friends as well?", 
         "Mark the event date and arrive on time. Yes, we welcome all volunters!"};
-      Date[] timeStamps = {new Date(2019, 04, 24, 10, 24), 
-        new Date(2019, 04, 24, 10, 34), 
-        new Date(2019, 04, 24, 11, 55), 
-        new Date(2019, 04, 24, 12, 05), 
-        new Date(2019, 04, 27, 8, 0)};
+      String[] timeStamps = {
+        "2019-04-24  10:34", 
+        "2019-04-24  13:55", 
+        "2019-04-24  15:05", 
+        "2019-04-25  10:00", 
+        "2019-04-27  17:56"};
 
-      if (user.equals("test1"))
-        cookieUser2 = new Cookie("user2", "test2");
-      else 
-        cookieUser2 = new Cookie("user2", "test1");
-
-      response.addCookie(cookieUser2);
 
       for (int i=0; i<senders.length; i++) {
         Entity messageEntity = new Entity("message");
         messageEntity.setProperty("sender", senders[i]);
-        messageEntity.setProperty("sender", receivers[i]);
+        messageEntity.setProperty("receiver", receivers[i]);
         messageEntity.setProperty("message", messages[i]);
-        messageEntity.setProperty("timeStamp", timeStamps[i]);
+        formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date time = null;
+        try {
+          time = formatter.parse(timeStamps[i]);
+        } catch (ParseException e) {
+          System.err.println("Parse Exception from SimpleDateFormat");
+        }
+        messageEntity.setProperty("timeStamp", time);
         datastore.put(messageEntity);
       }
     }
 
+    if (user.equals("test1"))
+      user2 = "test2";
+    else if (user.equals("test2")) 
+      user2 = "test1";
+
+    response.addCookie(new Cookie("user2", user2));
+
+    System.out.println("user = " + user);
+    System.out.println("user2 = " + user2);
     Query query2 = new Query("message").setFilter(
-        CompositeFilterOperator.or(FilterOperator.EQUAL.of("sender", user), FilterOperator.EQUAL.of("receiver", user)))
-      .addSort("timeStamp", SortDirection.ASCENDING);
+        CompositeFilterOperator.or(FilterOperator.EQUAL.of("sender", user), FilterOperator.EQUAL.of("receiver", user),
+          FilterOperator.EQUAL.of("sender", user2), FilterOperator.EQUAL.of("receiver", user2)))
+      .addSort("timeStamp", SortDirection.DESCENDING);
 
     PreparedQuery results = datastore.prepare(query2);
    
@@ -135,7 +154,8 @@ public class MessageServlet extends HttpServlet {
         String sender = (String) entity.getProperty("sender");
         String receiver = (String) entity.getProperty("receiver");
         String message = (String) entity.getProperty("message");
-        String timeStamp = entity.getProperty("timeStamp").toString();
+        formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm zzz");
+        String timeStamp = formatter.format(entity.getProperty("timeStamp"));
         Message m = new Message (sender, receiver, message, timeStamp);
         messageList.add(m);
       }
