@@ -24,6 +24,10 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
@@ -31,7 +35,10 @@ import com.google.gson.Gson;
 import com.google.sps.data.Initiative;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.annotation.WebServlet;
@@ -45,9 +52,236 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query myQuery = new Query("Initiative");
+    String sortBy = request.getHeader("sortBy");
+    String sDate = request.getHeader("startDate");
+    String eDate = request.getHeader("endDate");
+
+    Date startDate = null;
+    Date endDate = null;
+
+    boolean query2 = false;
+
+    try {
+      startDate = new SimpleDateFormat("yyyy-mm-dd").parse(sDate);
+      endDate = new SimpleDateFormat("yyyy-mm-dd").parse(eDate);
+    } catch (ParseException e) {
+      System.err.println("Parse Exception");
+    }
+
+    Query myQuery = new Query();
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+    if (sDate.length()==0 && eDate.length()==0) {
+
+      if (sortBy.length() != 0) {
+        int index = sortBy.indexOf('_');
+
+        if (sortBy.substring(index+1).equals("START")) {
+          if (sortBy.substring(0,index).equals("ASCENDING")) {
+
+            // Sort by StartDate Ascending order
+            myQuery = new Query("Initiative").addSort("startDate", SortDirection.ASCENDING);
+            System.out.println("Running QUERY 1 !!!!");
+          } else {
+
+            // Sort by StartDate Descending order
+            myQuery = new Query("Initiative").addSort("startDate", SortDirection.DESCENDING);
+            System.out.println("Running QUERY 2 !!!!");
+          }
+        } else {
+          if (sortBy.substring(0,index).equals("ASCENDING")) {
+
+            // Sort by EndDate Ascending order
+            myQuery = new Query("Initiative").addSort("endDate", SortDirection.ASCENDING);
+            System.out.println("Running QUERY 3 !!!!");
+          } else { 
+
+            // Sort by EndDate Descending order
+            myQuery = new Query("Initiative").addSort("endDate", SortDirection.DESCENDING);
+            System.out.println("Running QUERY 4 !!!!");
+          }
+        }
+
+      } else {
+
+        // Return ALL in any order --> no sortBy, no startDate, no endDate
+        myQuery = new Query("Initiative"); 
+        System.out.println("Running QUERY 20 !!!!");
+      }
+
+    } else {
+      if (sDate.length()!=0){
+        if (eDate.length()!=0) {
+          if (sortBy.length() != 0) {
+            int index = sortBy.indexOf('_');
+
+            if (sortBy.substring(index+1).equals("START")) {
+              if (sortBy.substring(0,index).equals("ASCENDING")) {
+
+                /* Filter by start AND end dates
+                 * Sort by startDate Ascending order
+                 */
+                myQuery = new Query("Initiative").setFilter(
+                      FilterOperator.GREATER_THAN_OR_EQUAL.of("startDate", startDate))
+                  .addSort("startDate", SortDirection.ASCENDING);
+                query2 = true;
+                System.out.println("Running QUERY 5 !!!!");
+              } else {
+
+                /* Filter by start AND end dates
+                 * Sort by startDate Descending order
+                 */ 
+                myQuery = new Query("Initiative").setFilter(
+                      FilterOperator.GREATER_THAN_OR_EQUAL.of("startDate", startDate))
+                  .addSort("startDate", SortDirection.ASCENDING);
+                query2 = true;
+                System.out.println("Running QUERY 6 !!!!");
+              }
+            } else {
+
+              if (sortBy.substring(0,index).equals("ASCENDING")) {
+
+                /* Filter by start AND end dates
+                 * Sort by endDate Ascending order
+                 */
+                myQuery = new Query("Initiative").setFilter(
+                      FilterOperator.GREATER_THAN_OR_EQUAL.of("startDate", startDate))
+                  .addSort("startDate", SortDirection.ASCENDING);
+                query2 = true;
+                System.out.println("Running QUERY 7 !!!!");
+              } else { 
+
+                /* Filter by start AND end dates
+                 * Sort by endDate Descending order
+                 */
+                myQuery = new Query("Initiative").setFilter(
+                      FilterOperator.GREATER_THAN_OR_EQUAL.of("startDate", startDate))
+                  .addSort("startDate", SortDirection.ASCENDING);
+                query2 = true;
+                System.out.println("Running QUERY 8 !!!!");
+              }
+            }
+          } else {
+
+            // Filter by start AND end dates
+                myQuery = new Query("Initiative").setFilter(
+                      FilterOperator.GREATER_THAN_OR_EQUAL.of("startDate", startDate))
+                  .addSort("startDate", SortDirection.ASCENDING);
+                query2 = true;
+            System.out.println("Running QUERY 9 !!!!");
+          }
+        } else {
+          if (sortBy.length() != 0) {
+            int index = sortBy.indexOf('_');
+
+            if (sortBy.substring(index+1).equals("START")) {
+              if (sortBy.substring(0,index).equals("ASCENDING")) {
+
+                // Filter by start date, sort by startDate Ascending order
+                myQuery = new Query("Initiative").setFilter(
+                    FilterOperator.GREATER_THAN_OR_EQUAL.of("startDate", startDate))
+                  .addSort("startDate", SortDirection.ASCENDING);
+                System.out.println("Running QUERY 10 !!!!");
+              } else {
+
+                // filter by start date, sort by startDate Descending order
+                myQuery = new Query("Initiative").setFilter(
+                    FilterOperator.GREATER_THAN_OR_EQUAL.of("startDate", startDate))
+                  .addSort("startDate", SortDirection.DESCENDING);
+                System.out.println("Running QUERY 11 !!!!");
+              }
+            } else {
+
+              if (sortBy.substring(0,index).equals("ASCENDING")) {
+
+                // filter by start date, sort by endDate Ascending order
+                myQuery = new Query("Initiative").setFilter(
+                    FilterOperator.GREATER_THAN_OR_EQUAL.of("startDate", startDate))
+                  .addSort("endDate", SortDirection.ASCENDING);
+                System.out.println("Running QUERY 12 !!!!");
+              } else { 
+
+                // filter by start date, sort by endDate Descending order
+                myQuery = new Query("Initiative").setFilter(
+                    FilterOperator.GREATER_THAN_OR_EQUAL.of("startDate", startDate))
+                  .addSort("endDate", SortDirection.DESCENDING);
+                System.out.println("Running QUERY 13 !!!!");
+              }
+            }
+          } else {
+
+            // filter by start date
+            myQuery = new Query("Initiative").setFilter(
+                FilterOperator.GREATER_THAN_OR_EQUAL.of("startDate", startDate));
+            System.out.println("Running QUERY 14 !!!!");
+          }
+
+        }
+
+      } else {
+
+        if (eDate.length()!=0) {
+          if (sortBy.length() != 0) {
+            int index = sortBy.indexOf('_');
+
+            if (sortBy.substring(index+1).equals("START")) {
+              if (sortBy.substring(0,index).equals("ASCENDING")) {
+
+                // filter by end date, sort by startDate Ascending order
+                myQuery = new Query("Initiative").setFilter( 
+                    FilterOperator.LESS_THAN_OR_EQUAL.of("endDate", endDate))
+                  .addSort("startDate", SortDirection.ASCENDING);
+                System.out.println("Running QUERY 15 !!!!");
+              } else {
+
+                // filter by end date, sort by startDate Descending order
+                myQuery = new Query("Initiative").setFilter(
+                    FilterOperator.LESS_THAN_OR_EQUAL.of("endDate", endDate))
+                  .addSort("startDate", SortDirection.DESCENDING);
+                System.out.println("Running QUERY 16 !!!!");
+              }
+            } else {
+
+              if (sortBy.substring(0,index).equals("ASCENDING")) {
+
+                // filter by end date, sort by endDate Ascending order
+                myQuery = new Query("Initiative").setFilter(
+                    FilterOperator.LESS_THAN_OR_EQUAL.of("endDate", endDate))
+                  .addSort("endDate", SortDirection.ASCENDING);
+                System.out.println("Running QUERY 17 !!!!");
+              } else { 
+
+                // filter by end date, sort by endDate Descending order
+                myQuery = new Query("Initiative").setFilter(
+                    FilterOperator.LESS_THAN_OR_EQUAL.of("endDate", endDate))
+                  .addSort("endDate", SortDirection.DESCENDING);
+                System.out.println("Running QUERY 18 !!!!");
+              }
+            }
+          } else {
+
+            // filter by end date
+            myQuery = new Query("Initiative").setFilter(
+                FilterOperator.LESS_THAN_OR_EQUAL.of("endDate", endDate));
+            System.out.println("Running QUERY 19 !!!!");
+          }
+        }
+      }
+    }
+
     PreparedQuery myResults = datastore.prepare(myQuery);
+    String myJson = "";
+
+    if (query2)
+      myJson = convertToJsonWithGson(processQueryResult(myResults, endDate));
+    else 
+      myJson = convertToJsonWithGson(processQueryResult(myResults, null));
+    
+    response.setContentType("application/json;");
+    response.getWriter().println(myJson);
+  }
+
+  private static List<List<String>> processQueryResult(PreparedQuery result, Date endDate) {
     List<String> titles = new ArrayList<>();
     List<String> locations = new ArrayList<>();
     List<String> startDates = new ArrayList<>();
@@ -58,11 +292,40 @@ public class DataServlet extends HttpServlet {
     List<String> instructions = new ArrayList<>();
     List<String> urls = new ArrayList<>();
     List<List<String>> listOfLists = new ArrayList<>();
-    for (Entity entity : myResults.asIterable()) {
+
+    if (endDate != null){
+      for (Entity entity : result.asIterable()) {
+        Date date = (Date)entity.getProperty("endDate");
+        if (date.compareTo(endDate) > 0)
+          continue;
+        else {
+          String currTitle = (String) entity.getProperty("title");
+          String currLocation = (String) entity.getProperty("location");
+          String currStartDate = entity.getProperty("startDate").toString();
+          String currEndDate = entity.getProperty("endDate").toString();
+          String currContext = (String) entity.getProperty("context");
+          String currCause = (String) entity.getProperty("cause");
+          String currAudience = (String) entity.getProperty("targetAudience");
+          String currInstructions = (String) entity.getProperty("instructions");
+          String currUrl = (String) entity.getProperty("imageUrl");
+          titles.add(currTitle);
+          locations.add(currLocation);
+          startDates.add(currStartDate);
+          endDates.add(currEndDate);
+          contexts.add(currContext);
+          causes.add(currCause);
+          audiences.add(currAudience);
+          instructions.add(currInstructions);
+          urls.add(currUrl);
+
+        }
+      }
+    } else {
+      for (Entity entity : result.asIterable()) {
         String currTitle = (String) entity.getProperty("title");
         String currLocation = (String) entity.getProperty("location");
-        String currStartDate = (String) entity.getProperty("startDate");
-        String currEndDate = (String) entity.getProperty("endDate");
+        String currStartDate = entity.getProperty("startDate").toString();
+        String currEndDate = entity.getProperty("endDate").toString();
         String currContext = (String) entity.getProperty("context");
         String currCause = (String) entity.getProperty("cause");
         String currAudience = (String) entity.getProperty("targetAudience");
@@ -77,6 +340,7 @@ public class DataServlet extends HttpServlet {
         audiences.add(currAudience);
         instructions.add(currInstructions);
         urls.add(currUrl);
+      }
     }
     listOfLists.add(titles);
     listOfLists.add(locations);
@@ -87,10 +351,8 @@ public class DataServlet extends HttpServlet {
     listOfLists.add(audiences);
     listOfLists.add(instructions);
     listOfLists.add(urls);
-    String myJson = convertToJsonWithGson(listOfLists);
-    response.setContentType("application/json;");
-    response.getWriter().println(myJson);
-  }
+    return listOfLists;
+  } 
 
    private static String convertToJsonWithGson(List<List<String>> arraylist) {
         Gson myGson = new Gson();
@@ -102,8 +364,18 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
       String initiativeTitle = request.getParameter("initiative-title");
       String initiativeLocation = request.getParameter("initiative-location");
-      String initiativeStartDate = request.getParameter("initiative-start-date");
-      String initiativeEndDate = request.getParameter("initiative-end-date");
+
+      Date initiativeStartDate = null;
+      Date initiativeEndDate = null;
+      
+      try {
+        initiativeStartDate = new SimpleDateFormat("yyyy-mm-dd").parse(request.getParameter("initiative-start-date"));
+        initiativeEndDate = new SimpleDateFormat("yyyy-mm-dd").parse(request.getParameter("initiative-end-date"));
+        System.out.println("successfully added Date object into database");
+      } catch (ParseException e){
+        System.err.println("Parse Exception!!");
+      }
+      
       String initiativeContext = request.getParameter("initiative-context");
       String initiativeCause = request.getParameter("initiative-cause");
       String initiativeTargetAudience = request.getParameter("initiative-target-audience");

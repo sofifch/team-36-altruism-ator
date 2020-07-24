@@ -73,8 +73,8 @@ public class UserServlet extends HttpServlet {
       if (c.getName().equals("user"))
         username = c.getValue();
       if (c.getName().equals("id")) {
-            System.out.println("ID ----> "+ c.getValue());
-            id = Long.parseLong(c.getValue());
+        System.out.println("ID ----> "+ c.getValue());
+        id = Long.parseLong(c.getValue());
       }
     }
 

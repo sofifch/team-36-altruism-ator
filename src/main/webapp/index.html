@@ -26,9 +26,24 @@
       <div id="location-placeholder">
           <p id="location-text"><img src="images/pin.png" style="width:30px;height:25px;margin-right:10px">Atlanta, GA</p>
       </div>
-      <input class="search-bar" id="search-item" type="text" placeholder="Search..">
-      <button class="category-button" id="dropdown">Category  
-          <img src="images/dropdown-icon.png" style="width:20px;height:10px;margin-left:10px;"></button>
+      <div class="search-bar">
+      <label>Select start date:</label>
+      <input id="start-date" type="date"><br><br>
+      <label>Select end date:</label>
+      <input id="end-date" type="date"><br><br>
+      <button onclick="getDate()">Filter</button>
+      </div>
+      <div class="sort">
+        <label>Sort By:</label>
+      <select  id="sortDropdown" onchange="sort()">
+          <img src="images/dropdown-icon.png" style="width:20px;height:10px;margin-left:10px;">
+          <option value="">Default</option>
+          <option value="ASCENDING_END">End Date: Most Recent to Future</option>
+          <option value="DESCENDING_END">End Date: Future to Most Recent</option>
+          <option value="ASCENDING_START">Start Date: Most Recent to Future</option>
+          <option value="DESCENDING_START">Start Date: Future to Most Recent</option>
+      </select>
+      </div>
       <div id="titles-container"></div>
       <div id="initiative-overlay">
           <div id="left-side-overlay">
