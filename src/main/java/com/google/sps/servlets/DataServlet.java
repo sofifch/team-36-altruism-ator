@@ -324,10 +324,9 @@ public class DataServlet extends HttpServlet {
       for (Entity entity : result.asIterable()) {
         String currTitle = (String) entity.getProperty("title");
         String currLocation = (String) entity.getProperty("location");
-        if ((entity.getProperty("startDate").toString()) == null) {
-            String currStartDate = "1980-01-01";
-        } else {
-            String currStartDate = entity.getProperty("startDate").toString();
+        String currStartDate = entity.getProperty("startDate").toString();
+        if (currStartDate == null) {
+            currStartDate = "1980-01-01";
         }
         String currEndDate = entity.getProperty("endDate").toString();
         String currContext = (String) entity.getProperty("context");
