@@ -17,6 +17,8 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
@@ -76,26 +78,31 @@ public class UserServlet extends HttpServlet {
       }
     }
 
+    Key key = KeyFactory.createKey("user", id);
+
     Query query = new Query("user").setFilter(
-        CompositeFilterOperator.and(FilterOperator.EQUAL.of("username", username), FilterOperator.EQUAL.of(Entity.KEY_RESERVED_PROPERTY, id)));
+        CompositeFilterOperator.and(FilterOperator.EQUAL.of("username", username), FilterOperator.EQUAL.of(Entity.KEY_RESERVED_PROPERTY, key)));
     
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery result = datastore.prepare(query);
 
     Entity person = result.asSingleEntity();
-
-    String name = (String) person.getProperty("name");
-    String email = (String) person.getProperty("email");
-    String organization = (String) person.getProperty("organization");
-    String number = (String) person.getProperty("contactNum");
-
-    User user = new User (username, name, email, number, organization);
-
-    Gson gson = new Gson();
-
-    response.setContentType("application/json; charset=UTF-8");
-    response.setCharacterEncoding("UTF-8");
-    response.getWriter().println(gson.toJson(user));
+    if (person == null) {
+        User user = new User(null, null, null, null, null);
+        Gson gson = new Gson();
+        response.setContentType("application/json; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().println(gson.toJson(user));
+    } else {
+        String name = (String) person.getProperty("name");
+        String email = (String) person.getProperty("email");
+        String organization = (String) person.getProperty("organization");
+        String number = (String) person.getProperty("contactNum");
+        User user = new User (username, name, email, number, organization);
+        Gson gson = new Gson();
+        response.setContentType("application/json; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().println(gson.toJson(user));
+    }
   }
-
 }
