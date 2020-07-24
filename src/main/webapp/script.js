@@ -227,6 +227,7 @@ function checkStatus() {
         itemText.textContent = "Logout";
     }
     logoutFeature();
+    userNeededForSubmission();
 }
 
 function logoutFeature() {
@@ -261,4 +262,16 @@ function getCookie(cname) {
         }
     }
     return "";
+}
+
+function userNeededForSubmission() {
+    console.log("running");
+    if (getCookie("user") == "") {
+        document.getElementById('submit-new-initiative').addEventListener("click",
+        function(event) {
+            event.preventDefault();
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+        });
+    }
 }
