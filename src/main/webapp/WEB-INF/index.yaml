@@ -1,0 +1,12 @@
+indexes:
+- kind: message
+  properties:
+  - name: sender
+  - name: timeStamp
+    direction: desc
+
+- kind: message
+  properties:
+  - name: receiver
+  - name: timeStamp
+    direction: desc
