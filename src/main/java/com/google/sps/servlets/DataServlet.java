@@ -62,8 +62,10 @@ public class DataServlet extends HttpServlet {
     boolean query2 = false;
 
     try {
-      startDate = new SimpleDateFormat("yyyy-mm-dd").parse(sDate);
-      endDate = new SimpleDateFormat("yyyy-mm-dd").parse(eDate);
+      if (sDate.length() > 0)
+        startDate = new SimpleDateFormat("yyyy-mm-dd").parse(sDate);
+      if (eDate.length() > 0)
+        endDate = new SimpleDateFormat("yyyy-mm-dd").parse(eDate);
     } catch (ParseException e) {
       System.err.println("Parse Exception");
     }
@@ -293,6 +295,7 @@ public class DataServlet extends HttpServlet {
     List<String> urls = new ArrayList<>();
     List<List<String>> listOfLists = new ArrayList<>();
 
+    System.out.println("processQueryResult() -----> endDate = " + endDate);
     if (endDate != null){
       for (Entity entity : result.asIterable()) {
         Date date = (Date)entity.getProperty("endDate");
@@ -324,8 +327,17 @@ public class DataServlet extends HttpServlet {
       for (Entity entity : result.asIterable()) {
         String currTitle = (String) entity.getProperty("title");
         String currLocation = (String) entity.getProperty("location");
-        String currStartDate = entity.getProperty("startDate").toString();
-        String currEndDate = entity.getProperty("endDate").toString();
+        
+        if (entity.getProperty("startDate") == null)
+          System.out.println("startDate is null");
+        
+        String currStartDate = (String) entity.getProperty("startDate").toString();
+
+        if (entity.getProperty("endDate") == null)
+          System.out.println("endDate is null");
+        
+        String currEndDate = (String) entity.getProperty("endDate").toString();
+
         String currContext = (String) entity.getProperty("context");
         String currCause = (String) entity.getProperty("cause");
         String currAudience = (String) entity.getProperty("targetAudience");
