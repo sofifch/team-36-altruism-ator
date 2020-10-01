@@ -295,7 +295,6 @@ public class DataServlet extends HttpServlet {
     List<String> urls = new ArrayList<>();
     List<List<String>> listOfLists = new ArrayList<>();
 
-    System.out.println("processQueryResult() -----> endDate = " + endDate);
     if (endDate != null){
       for (Entity entity : result.asIterable()) {
         Date date = (Date)entity.getProperty("endDate");
@@ -327,17 +326,8 @@ public class DataServlet extends HttpServlet {
       for (Entity entity : result.asIterable()) {
         String currTitle = (String) entity.getProperty("title");
         String currLocation = (String) entity.getProperty("location");
-        
-        if (entity.getProperty("startDate") == null)
-          System.out.println("startDate is null");
-        
         String currStartDate = (String) entity.getProperty("startDate").toString();
-
-        if (entity.getProperty("endDate") == null)
-          System.out.println("endDate is null");
-        
         String currEndDate = (String) entity.getProperty("endDate").toString();
-
         String currContext = (String) entity.getProperty("context");
         String currCause = (String) entity.getProperty("cause");
         String currAudience = (String) entity.getProperty("targetAudience");
