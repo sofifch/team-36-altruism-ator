@@ -28,7 +28,7 @@
           <form id="newInitiativeForm" action="my-blobstore-url" method="POST" enctype="multipart/form-data">
             <p class="initiative-input">Title:
                 <img id="mandatory" src="images/asterisk.png"></p>
-            <input type="text" name="initiative-title">
+            <input type="text" name="initiative-title" required>
             <br/><br/>
             <p class="initiative-input">Insert Initiative Image:
                 <img id="mandatory" src="images/asterisk.png"></p>
@@ -36,15 +36,15 @@
             <br/><br/>
             <p class="initiative-input">Location:
                 <img id="mandatory" src="images/asterisk.png"></p>
-            <input type="text" name="initiative-location">
+            <input type="text" name="initiative-location" required>
             <br/><br/>
             <p class="initiative-input">Start Date:
                 <img id="mandatory" src="images/asterisk.png"></p>
-            <input type="date" name="initiative-start-date">
+            <input type="date" name="initiative-start-date" required>
             <br/><br/>
             <p class="initiative-input">End Date:
                 <img id="mandatory" src="images/asterisk.png"></p>
-            <input type="date" name="initiative-end-date">
+            <input type="date" name="initiative-end-date" required>
             <br/><br/>
             <p class="initiative-input">Context:
                 <img id="mandatory" src="images/asterisk.png"></p>
@@ -60,7 +60,7 @@
             <br/><br/>
             <p class="initiative-input">Instructions:
                 <img id="mandatory" src="images/asterisk.png"></p>
-            <input id="big-text-space" type="text" name="initiative-instructions">
+            <input id="big-text-space" type="text" name="initiative-instructions" required>
             <br/><br/>
             <div class="popup">
                 <span class="popuptext" id="myPopup">Create an account first!</span>
